@@ -1,0 +1,396 @@
+.main-slider-wrap {
+  position: relative;
+  background: #F1F3F4;
+
+  .play-circle {
+    bottom: -40px;
+    right: calc(50% - 600px);
+    @include breakpoint(lg) {
+      right: calc(50% - 555px);
+    }
+    @include breakpoint(md-down) {
+      right: calc(50% - 50px);
+    }
+    @include breakpoint(sm-down) {
+      width: 50px;
+      height: 50px;
+      bottom: -25px;
+      right: calc(50% - 25px);
+    }
+  }
+
+  .left-image {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 20;
+    padding-left: calc(50% - 600px);
+    width: 40%;
+    background-color: #ffffff;
+    @include breakpoint(lg) {
+      padding-left: calc(50% - 555px);
+    }
+    @include breakpoint(md-down) {
+      @include flexbox;
+      @include justify-content(center);
+    }
+    @include breakpoint(sm-down) {
+      display: none;
+    }
+  }
+}
+
+.main-slider {
+
+  .slide {
+    @include flexbox;
+    @include breakpoint(sm-down) {
+      @include flex-direction(column);
+    }
+
+    .left {
+      width: 40%;
+      padding-top: 150px;
+      padding-left: calc(50% - 600px);
+      padding-right: 10px;
+      @include breakpoint(lg) {
+        padding-left: calc(50% - 555px);
+      }
+      @include breakpoint(md-down) {
+        padding-left: calc(50% - 470px);
+      }
+      @include breakpoint(sm-down) {
+        .text {
+          text-align: center;
+        }
+        h1 {
+          color: #ffffff;
+        }
+        top: 50%;
+        @include transform(translateY(-50%));
+        width: 750px;
+        padding: 50px 55px;
+        margin: auto;
+        position: absolute;
+        z-index: 2;
+        left: calc(50% - 375px);
+        @include flexbox;
+        @include flex-direction(column);
+        @include align-items(center);
+      }
+      @include breakpoint(xs) {
+        width: 100%;
+        left: 0;
+        height: 275px;
+        padding: 50px 15px;
+      }
+
+      .text {
+        font-size: 16px;
+        line-height: 19px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #171717;
+        margin-bottom: 15px;
+        @include breakpoint(sm-down) {
+          color: #ffffff;
+        }
+      }
+    }
+
+    .right {
+      width: 60%;
+      position: relative;
+      height: 795px;
+      &:hover{
+        .info-item{
+          -webkit-animation-play-state: paused;
+          -moz-animation-play-state: paused;
+          -o-animation-play-state: paused;
+          animation-play-state: paused;
+        }
+      }
+      @include breakpoint(sm-down) {
+        width: 100%;
+        height: 400px;
+        &:after {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 1;
+          background-color: rgba(0, 0, 0, .2);
+        }
+      }
+
+      .slide-img {
+        width: 100%;
+      }
+    }
+  }
+
+  h1 {
+    text-align: left;
+    @include breakpoint(sm-down) {
+      text-align: center;
+    }
+  }
+
+  .slick-arrow {
+    width: 60px;
+    height: 60px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 25px;
+    z-index: 25;
+    @include breakpoint(sm-down) {
+      width: 45px;
+      height: 45px;
+      background-size: 20px;
+    }
+
+    &.slick-next {
+      bottom: 0;
+      left: 40%;
+      background-color: #171717;
+      border-radius: 0px 3px 0px 0px;
+      background-image: url("../img/svg/slick-arrow-next.svg");
+      @include breakpoint(sm-down) {
+        bottom: 50%;
+        @include transform(translateY(50%));
+        right: 10px;
+        left: initial;
+        background-color: #4F4F4F;
+      }
+      @include breakpoint(xs) {
+        border-radius: 3px 0px 0px 3px;
+        bottom: 0;
+        right: 0;
+        @include transform(translateY(0));
+      }
+    }
+
+    &.slick-prev {
+      bottom: 0;
+      left: calc(40% - 60px);
+      background-color: #4F4F4F;
+      border-radius: 3px 0px 0px 3px;
+      background-image: url("../img/svg/slick-arrow-prev.svg");
+      @include breakpoint(sm-down) {
+        @include transform(translateY(50%));
+        bottom: 50%;
+        left: 10px;
+      }
+      @include breakpoint(xs) {
+        border-radius: 0px 3px 0px 0px;
+        bottom: 0;
+        left: 0;
+        @include transform(translateY(0));
+      }
+    }
+  }
+
+  .info-item {
+    position: absolute;
+    z-index: 20;
+    background: #ffffff;
+    border-radius: 3px;
+    padding: 10px 45px 10px 10px;
+    @include flexbox;
+    @include align-items(center);
+    @for $i from 1 through 20 {
+      @if $i < 3{
+        &:nth-child(#{$i}) {
+          animation: #{$i * .2 + 7}s move linear infinite;
+          animation-delay: #{$i * .1}s;
+        }
+      }@else{
+        &:nth-child(#{$i}) {
+          animation: #{$i * .2 + 7}s move1 linear infinite;
+          animation-delay: #{$i * .1}s;
+        }
+      }
+
+    }
+    @include breakpoint(sm-down) {
+      display: none;
+    }
+
+    &.climat {
+      left: 13%;
+      bottom: 40%;
+    }
+
+    &.multi {
+      left: 53%;
+      bottom: 32%;
+    }
+
+    &.control {
+      left: 26%;
+      bottom: 81%;
+    }
+
+    &.safe {
+      left: 4%;
+      bottom: 63%;
+    }
+
+    &.electric {
+      left: 52%;
+      bottom: 65%;
+    }
+
+    &.waterprof {
+      left: 55%;
+      z-index: 19;
+      bottom: 48%;
+    }
+
+    .title {
+      transition: all .2s;
+      font-size: 16px;
+    }
+
+    &:hover {
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+
+      &:after {
+        @include rotate(-180);
+      }
+
+      .title {
+        color: $green;
+      }
+
+      .text {
+        z-index: 20;
+        opacity: 1;
+        pointer-events: all;
+      }
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      right: 15px;
+      top: calc(50% - 3px);
+      width: 12px;
+      height: 6px;
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-image: url("../img/svg/down-arrow.svg");
+      transition: all .2s;
+    }
+
+    .icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 15px;
+      cursor: default;
+    }
+
+    .text {
+      position: absolute;
+      left: 0;
+      top: 100%;
+      opacity: 0;
+      pointer-events: none;
+      padding: 15px;
+      background-color: #ffffff;
+      width: 100%;
+      transition: all .2s;
+      border-bottom-right-radius: 3px;
+      border-bottom-left-radius: 3px;
+    }
+  }
+}
+
+.mob-list {
+  display: none;
+  @include breakpoint(sm-down) {
+    display: block;
+    padding: 50px 0;
+  }
+  .info-item{
+    margin-bottom: 10px;
+    box-shadow: 0px 20px 100px rgba(63, 81, 103, 0.2);
+  }
+  .top-item {
+    @include flexbox;
+    background-color: #ffffff;
+    @include align-items(center);
+    padding: 15px 10px;
+    border-radius: 3px;
+    .icon{
+      margin-right: 10px;
+    }
+    .mob-list-trigger {
+      margin-left: auto;
+      width: 20px;
+      height: 10px;
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-image: url("../img/svg/down-arrow.svg");
+      transition: all .2s;
+      z-index: 1;
+      &.active{
+        @include rotate(-180);
+      }
+    }
+  }
+  .text{
+    padding: 15px;
+    background-color: #ffffff;
+    z-index: 1;
+    display: none;
+    margin-bottom: 0;
+  }
+}
+
+@keyframes move {
+  from{
+    @include transform(translate(0,0))
+  }
+  20%{
+    @include transform(translate(-10%,-5%))
+  }
+  40%{
+    @include transform(translate(5%,2.5%))
+  }
+  60%{
+    @include transform(translate(-5%, 5%))
+  }
+  80%{
+    @include transform(translate(2.5%,-10%))
+  }
+  to{
+    @include transform(translate(0,0))
+  }
+}
+
+@keyframes move1 {
+  from{
+    @include transform(translate(0,0))
+  }
+  20%{
+    @include transform(translate(10%,5%))
+  }
+  40%{
+    @include transform(translate(-5%,-2.5%))
+  }
+  60%{
+    @include transform(translate(5%, -5%))
+  }
+  80%{
+    @include transform(translate(-2.5%,10%))
+  }
+  to{
+    @include transform(translate(0,0))
+  }
+}

@@ -1,0 +1,73 @@
+.lang-switch{
+  position: relative;
+  width: 53px;
+  height: 24px;
+  margin-right: 35px;
+  padding-bottom: 15px;
+  @include breakpoint(lg){
+    margin-right: 15px;
+  }
+  @include breakpoint(sm-down){
+    margin-right: 15px;
+  }
+  &:hover{
+    @include breakpoint(sm-down){
+      .lang-trigger{
+        @include rotate(0);
+      }
+      .lang-item{
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+  }
+  &:hover,&.hovered{
+    .lang-trigger{
+      @include rotate(-180);
+    }
+    .lang-item{
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+
+  .lang-trigger{
+    content: '';
+    position: absolute;
+    right: 6px;
+    top: calc(50% - 3px);
+    width: 12px;
+    height: 6px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../img/svg/down-arrow.svg");
+    transition: all .2s;
+    z-index: 1;
+  }
+  .lang-item{
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    padding: 4px;
+    background-color: #ffffff;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    @include flexbox;
+    @include align-items(center);
+    img{
+      width: 100%;
+    }
+    @for $i from 1 through 3 {
+      &:nth-child( #{$i}) {
+        top: calc(100% * #{$i - 1});
+      }
+    }
+    &.active{
+      top: 0;
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+}

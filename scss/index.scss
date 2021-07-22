@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+@import "mixins/compass";
+@import "mixins/breakpoints";
+@import "mixins/flexbox";
+@import "mixins/clearfix";
+@import "mixins/list-reset";
+@import "mixins/user-select";
+@import "mixins/container-relative";
+@import "mixins/fontface";
+body{padding: 0;}
+
+//libs
+@import "variables";
+@import "grid";
+@import "fonts";
+@import "reset";
+@import "libs/fancybox3";
+@import "libs/slick-theme";
+@import "libs/noUIslider";
+@import "libs/scrollbar";
+@import "libs/popup-slide";
+
+//components
+//@import "components/to-top";
+@import "components/burger";
+@import "components/button";
+@import "components/lang-switch";
+@import "components/object-fit";
+@import "components/validation";
+@import "components/breadcrumbs";
+@import "components/pagination";
+
+//widgets
+//@import "widgets/pagination";
+//@import "widgets/breadcrumbs";
+//@import "widgets/validation";
+
+//layouts
+@import "layouts/header";
+@import "layouts/footer";
+@import "layouts/main-slider";
+@import "layouts/numbers";
+@import "layouts/options";
+@import "layouts/clients";
+@import "layouts/tabs-block";
+@import "layouts/step";
+@import "layouts/page404";
+@import "layouts/posibility";
+@import "layouts/sitemap";
+@import "layouts/video-page";
+@import "layouts/what-can";
+@import "layouts/calc-block";
+@import "layouts/smal-form";
+@import "layouts/projects";
+@import "layouts/contact-page";
+@import "layouts/show-room";
+@import "layouts/blog";

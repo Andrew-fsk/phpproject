@@ -1,0 +1,367 @@
+@charset "UTF-8";
+
+//partials
+@import "variables";
+@import "reset";
+
+//mixins
+@import "mixins/compass";
+@import "mixins/breakpoints";
+@import "mixins/clearfix";
+@import "mixins/heading";
+@import "mixins/flexbox";
+
+
+html, body {
+  height: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  @include flexbox;
+  @include flex-direction(column);
+  position: relative;
+  font-family: $font-family;
+  font-size: $font-size;
+  color: $text-color;
+  width: 100vw;
+  max-width: 100%;
+  &.fancybox-iosfix {
+    position: relative !important;
+    left: 0;
+    top: inherit!important;
+    right: 0;
+  }
+  .wrap {
+    flex: 1 0 auto;
+    //@include clearfix;
+  }
+}
+ul, ol {
+  list-style-position: outside;
+  margin-bottom: 30px;
+  li {
+    margin-bottom: 10px;
+    margin-left: 15px;
+    font-size: $font-size;
+    line-height: 1.2;
+    color: $text-color;
+      list-style: none;
+      position: relative;
+      &:after{
+        content: '';
+        position: absolute;
+        left: -15px;
+        top: 5px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: $green;
+      }
+  }
+}
+a {
+  text-decoration: underline;
+  color: $link-color;
+  &:hover {
+    text-decoration: none;
+    @if($link-hover-color != false){
+      color: $link-hover-color;
+    }
+  }
+  img {
+    border: none;
+  }
+}
+@include heading();
+p {
+  margin-bottom: $paragraph-margin;
+  font-size: $font-size-paragraph;
+  line-height: $paragraph-height;
+  color: $paragraph-color;
+}
+table {
+  width: 100%;
+  margin-bottom: 40px;
+  border-collapse: collapse;
+  font-family: $font-family;
+  th,td {
+    padding: 15px 10px;
+    border: 1px solid $table-border-color;
+    font-size: $font-size-paragraph;
+    color: $table-color;
+    @include breakpoint(sxs){
+      padding: 5px;
+    }
+  }
+  th {
+    border-bottom-width: 3px;
+    font-weight: 400;
+    @if($table-heading-color != false){
+      color: $table-heading-color;
+    }
+  }
+}
+input[type="submit"] {
+  font-family: $font-family-validation;
+  outline: none;
+  cursor: pointer;
+  line-height: 1.3;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+textarea, input, select{
+  font-family: $font-family-validation;
+}
+button {
+  border:none;
+}
+.content {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.text-page {
+  @include clearfix;
+  img {
+    max-width: 100%;
+    @include breakpoint(sm-down){
+      float: none !important;
+      display: block;
+      margin: 0 auto 30px !important;
+    }
+  }
+  ul,ol {
+    overflow: hidden;
+    li {
+      position: relative;
+      left: 15px;
+      padding-right: 15px;
+      font-size: $font-size-paragraph;
+    }
+  }
+  table img {
+    float: none;
+    max-width: inherit;
+    margin: 0;
+  }
+}
+.attention {
+  display: none;
+}
+html[data-useragent*='MSIE 10.0'] {
+  body *{
+    display: none !important;
+  }
+  .attention img {
+    display: block !important;
+    margin: 0 auto 30px;
+  }
+  .attention {
+    display: block !important;
+    padding-top: 15%;
+    font-size: 60px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+  }
+}
+.hidden {
+  display: none!important;
+}
+.overflow-wrap {
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+ h1{
+   span{
+     color: $green;
+     font-weight: 800;
+   }
+ }
+
+.title-text{
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #171717;
+  margin-bottom: 20px;
+  @include breakpoint(smxs){
+    text-align: center;
+  }
+}
+
+.form-text{
+  font-size: 16px;
+  line-height: 26px;
+  margin-bottom: 45px;
+  @include breakpoint(sm-down){
+    margin-bottom: 20px;
+  }
+}
+
+.padding-top{
+  padding-top: 110px;
+  @include breakpoint(sm-down){
+    padding-top: 50px;
+  }
+
+}
+
+.text-sector{
+  a{
+    text-decoration: none;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
+
+p.green{
+  background: #C5F3D0;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  padding: 15px;
+  padding-right: 40px;
+  margin-left: 60px;
+  @include breakpoint(xs){
+    margin-left: 0;
+    padding: 10px;
+  }
+}
+
+.mob-scroll{
+  @include breakpoint(sm-down){
+    max-height: 400px;
+    overflow-y: auto;
+  }
+}
+
+.padding-bottom{
+  padding-bottom: 100px;
+  @include breakpoint(sm-down){
+    padding-bottom: 50px;
+  }
+}
+
+.calc-page{
+  .calc-block-wrap{
+    padding: 0;
+  }
+}
+
+.document-list{
+  @include flexbox;
+  @include flex-wrap(wrap);
+  margin: 0 -7.5px;
+  .document-item{
+    cursor: pointer;
+    width: calc(20% - 15px);
+    margin: 0 7.5px 15px 7.5px;
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+    @include breakpoint(md-down){
+      height: 245px;
+    }
+    @include breakpoint(sm-down){
+      width: calc(25% - 15px);
+    }
+    @include breakpoint(xs){
+      width: calc(33.33% - 15px);
+    }
+    @include breakpoint(smxs){
+      width: calc(50% - 15px);
+    }
+    @include breakpoint(ultra-sxs){
+      height: 200px;
+    }
+    &:after{
+      pointer-events: none;
+      opacity: 0;
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,.2);
+      transition: all .2s;
+    }
+    &:hover{
+      &:after{
+        opacity: 1;
+      }
+      .zoom{
+        opacity: 1;
+      }
+    }
+  }
+  .zoom{
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    left: calc(50% - 20px);
+    top: calc(50% - 20px);
+    width: 40px;
+    height: 40px;
+    border-radius: 3px;
+    background-color: #ffffff;
+    z-index: 2;
+    cursor: pointer;
+    background-position: center;
+    background-size: 20px;
+    transition: all .2s;
+    background-repeat: no-repeat;
+    background-image: url("../img/svg/zoom.svg");
+  }
+}
+
+#demo-canvas{
+  display: block;
+  pointer-events: none;
+  position: fixed;
+  z-index: 25;
+  left: 0;
+  top: 0;
+  @include breakpoint(sm-down){
+    opacity: 0.4;
+  }
+}
+
+.animated-block{
+  opacity: 0;
+  @include transform(translateY(30%));
+  transition: all .3s;
+  &.active-block{
+    opacity: 1;
+    @include transform(translateY(0));
+  }
+  @for $i from 1 through 20 {
+    &:nth-child(#{$i}) {
+      transition-delay: #{$i * .1}s;
+    }
+  }
+}
+
+.animated-block-after{
+  .step-list:after{
+    opacity: 0;
+    @include transform(translateY(30%));
+    transition: all .3s;
+    transition-delay: .3s;
+  }
+  &.active-block .step-list:after{
+    opacity: 1;
+    @include transform(translateY(0));
+  }
+}
+
+.animated-block-left{
+  opacity: 0;
+  @include transform(translateX(-30%));
+  transition: all .5s;
+  &.active-block{
+    opacity: 1;
+    @include transform(translateX(0));
+  }
+}
