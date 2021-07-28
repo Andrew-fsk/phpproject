@@ -13,7 +13,8 @@ class View
     public function render($data)
     {
          $this->smarty->assign('data', $data);
-         $this->smarty->display(TEMPLATE_PATH.'base.tpl');
+         $this->smarty->assign('test', 'test');
+         $this->smarty->display(TEMPLATE_PATH . 'base.tpl');
     }
 
     public function out($template, $data = [])

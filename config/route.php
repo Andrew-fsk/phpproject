@@ -34,6 +34,9 @@ class Routing
             $controller = new $controllerName();
             if (method_exists($controller, $action)) {
                 $controller->$action();
+            } else if  (method_exists($controller, 'showItem')){
+                $action = "showItem";
+                $controller->$action(str_replace('.html', '', $route[1]));
             } else {
                 Routing::errorPage();
             }
