@@ -8,22 +8,28 @@ class IndexController extends Controller
     {
         $this->model = new IndexModel();
         $this->view = new View();
+        $this->pageData['menu']['1'] = $this->model->showMenu(1);
+        $this->pageData['menu']['2'] = $this->model->showMenu(2);
     }
 
     public function index()
     {
         $this->pageData['title'] = 'Главная страница';
-        $this->pageData['menu']['1'] = $this->model->showMenu(1);
-        $this->pageData['menu']['2'] = $this->model->showMenu(2);
-        $this->pageData['content'] = file_get_contents(TEMPLATE_PATH . 'index.tpl');
+        $this->pageData['content'] = $this->view->out(TEMPLATE_PATH . 'index.tpl');
 
         $this->view->render($this->pageData);
     }
 
-    public function textPage($pageTpl)
+    public function textPage($pageTpl, $pageUrl)
     {
-        $this->pageData['title'] = 'Текстовая страница';
-        $this->pageData['content'] = file_get_contents($pageTpl);
+        $pageInfo = $this->model->getPageInfo($pageUrl);
+
+        $this->pageData['title'] = $pageInfo['page_name'] ? $pageInfo['page_name'] : 'Текстовая страница';
+
+        if($pageInfo['content']) $this->pageData['page_body'] = $pageInfo['content'];
+
+        $this->pageData['content'] = $this->view->out($pageTpl , $this->pageData);
+
         $this->view->render($this->pageData);
     }
 
@@ -33,7 +39,7 @@ class IndexController extends Controller
         header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
         http_response_code(404);
         $this->pageData['title'] = 'Страница не найдена - 404';
-        $this->pageData['content'] = file_get_contents('404.tpl');
+        $this->pageData['content'] = $this->view->out(TEMPLATE_PATH . '404.tpl');
         $this->view->render($this->pageData);
     }
 

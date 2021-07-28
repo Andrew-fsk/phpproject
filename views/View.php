@@ -2,14 +2,23 @@
 
 class View
 {
+    public $smarty;
+
+    public function __construct()
+    {
+        require_once( LIBS_PATH . 'Smarty.class.php');
+        $this->smarty = new Smarty();
+    }
 
     public function render($data)
     {
-        require_once( LIBS_PATH . 'Smarty.class.php');
-        $smarty = new Smarty();
-
-        $smarty->assign('data', $data);
-        $smarty->display(TEMPLATE_PATH.'base.tpl');
+         $this->smarty->assign('data', $data);
+         $this->smarty->display(TEMPLATE_PATH.'base.tpl');
     }
 
+    public function out($template, $data = [])
+    {
+        $this->smarty->assign('data', $data);
+        return $this->smarty->fetch('file:' . $template);
+    }
 }

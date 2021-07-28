@@ -92,7 +92,6 @@
     </header>
 </div>
     {$data.content}
-{debug}
 <footer>
     <div class="container desktop">
         <div class="column"><a class="logo-wrap" href="/"><img src="/img/logo.png"></a>

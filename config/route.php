@@ -46,7 +46,7 @@ class Routing
             include MODEL_PATH . $modelName . ".php";
 
             $controller = new $controllerName();
-            $controller->$action(TEMPLATE_PATH . 'pages/' . $route[0] . ".tpl");
+            $controller->$action(TEMPLATE_PATH . 'pages/' . $route[0] . ".tpl", $route[0]);
         } else {
             Routing::errorPage();
         }
