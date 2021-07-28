@@ -2,20 +2,10 @@
 
 class IndexController extends Controller
 {
-    public $menu;
-
-    public function __construct()
-    {
-        $this->model = new IndexModel();
-        $this->view = new View();
-        $this->pageData['menu']['1'] = $this->model->showMenu(1);
-        $this->pageData['menu']['2'] = $this->model->showMenu(2);
-    }
-
     public function index()
     {
         $this->pageData['title'] = 'Главная страница';
-        $this->pageData['content'] = $this->view->out(TEMPLATE_PATH . 'index.tpl');
+        $this->pageData['content'] = $this->view->out(TEMPLATE_PATH . 'index.tpl', $this->pageData);
 
         $this->view->render($this->pageData);
     }

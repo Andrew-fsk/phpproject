@@ -2,17 +2,6 @@
 
 class BlogController extends Controller
 {
-    public function __construct()
-    {
-        $this->model = new BlogModel();
-        $this->view = new View();
-
-
-        $this->pageData['menu']['1'] = $this->model->showMenu(1);
-        $this->pageData['menu']['2'] = $this->model->showMenu(2);
-
-        $this->moduleUrl = mb_strtolower(str_replace('Controller', '', get_class($this)));
-    }
 
     public function index()
     {
